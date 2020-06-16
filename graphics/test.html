@@ -1,0 +1,120 @@
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - cube</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				margin: 0px;
+				background-color: #000000;
+				overflow: hidden;
+			}			
+		</style>
+	</head>
+	<body>
+		<script src="build/three.js"></script>
+		<script src="js/controls/OrbitControls.js"></script>
+		
+
+		<script>
+	
+			var camera, scene, renderer, starsMesh, sunMesh, sphere1Mesh, sphere2Mesh, sphere3Mesh, sphere4Mesh, sphere5Mesh, sphere6Mesh, sphere7Mesh, sphere8Mesh;
+			init();
+			animate();
+
+			function init() {
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
+			camera.position.z = 400;
+			var control = new THREE.OrbitControls(camera);
+
+
+			var starsGeo = new THREE.SphereGeometry(500, 40, 50); 
+			var material = new THREE.MeshBasicMaterial({
+				map:  THREE.ImageUtils.loadTexture('images/stars.png'), 
+				side: THREE.BackSide
+			});
+			starsMesh = new THREE.Mesh(starsGeo,material);
+			scene.add(starsMesh);
+
+
+			var sunGeo = new THREE.SphereBufferGeometry(30, 40, 50);
+			var material  = new THREE.MeshBasicMaterial({
+				map: THREE.ImageUtils.loadTexture('images/sun.jpg')
+			});
+			sunMesh = new THREE.Mesh(sunGeo,material);
+			scene.add(sunMesh);
+
+			var sphere1Geo = new THREE.SphereBufferGeometry(3,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/mercury.jpg')});
+			sphere1Mesh = new THREE.Mesh(sphere1Geo, material);
+			sphere1Mesh.position.x += 50;
+			scene.add(sphere1Mesh);
+
+			var sphere2Geo = new THREE.SphereBufferGeometry(5,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/venus.jpg')});
+			sphere2Mesh = new THREE.Mesh(sphere2Geo, material);
+			sphere2Mesh.position.x += 70;
+			scene.add(sphere2Mesh);
+
+			var sphere3Geo = new THREE.SphereBufferGeometry(7,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/earth.jpg')});
+			sphere3Mesh = new THREE.Mesh(sphere3Geo, material);
+			sphere3Mesh.position.x += 92;
+			scene.add(sphere3Mesh);
+
+			var sphere4Geo = new THREE.SphereBufferGeometry(6,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/mars.jpg')});
+			sphere4Mesh = new THREE.Mesh(sphere4Geo, material);
+			sphere4Mesh.position.x += 118;
+			scene.add(sphere4Mesh);
+
+			var sphere5Geo = new THREE.SphereBufferGeometry(20,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/jupiter.jpg')});
+			sphere5Mesh = new THREE.Mesh(sphere5Geo, material);
+			sphere5Mesh.position.x += 160;
+			scene.add(sphere5Mesh);
+
+			var sphere6Geo = new THREE.SphereBufferGeometry(16,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/saturn.jpg')});
+			sphere6Mesh = new THREE.Mesh(sphere6Geo, material);
+			sphere6Mesh.position.x += 210;
+			scene.add(sphere6Mesh);
+
+			var sphere7Geo = new THREE.SphereBufferGeometry(12,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/uranus.jpg')});
+			sphere7Mesh = new THREE.Mesh(sphere7Geo, material);
+			sphere7Mesh.position.x += 255;
+			scene.add(sphere7Mesh);
+
+			var sphere8Geo = new THREE.SphereBufferGeometry(10,40,50);
+			var material = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture('images/neptune.jpg')});
+			sphere8Mesh = new THREE.Mesh(sphere8Geo, material);
+			sphere8Mesh.position.x += 295;
+			scene.add(sphere8Mesh);
+
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);										
+			}
+
+
+			function animate() {
+				renderer.render(scene,camera);
+				sunMesh.rotation.y += 0.01;
+				sphere1Mesh.rotation.y += 0.05;
+				sphere2Mesh.rotation.y += 0.05;
+				sphere3Mesh.rotation.y += 0.05;
+				sphere4Mesh.rotation.y += 0.05;
+				sphere5Mesh.rotation.y += 0.05;
+				sphere6Mesh.rotation.y += 0.05;
+				sphere7Mesh.rotation.y += 0.05;
+				sphere8Mesh.rotation.y += 0.05;
+				requestAnimationFrame(animate);
+			}
+
+		</script>
+
+	</body>
+</html>
